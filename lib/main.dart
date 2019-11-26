@@ -78,18 +78,18 @@ class _PersonalExpenseState extends State<PersonalExpense> {
   }
 
   final List<Transaction> _transactions = [
-    // Transaction(
-    //   id: 'tx1',
-    //   title: 'New Shoes',
-    //   amount: 100,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 'tx2',
-    //   title: 'Groceries',
-    //   amount: 16.43,
-    //   date: DateTime.now(),
-    // )
+    Transaction(
+      id: 'tx1',
+      title: 'New Shoes',
+      amount: 100,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 'tx2',
+      title: 'Groceries',
+      amount: 16.43,
+      date: DateTime.now(),
+    )
   ];
   @override
   Widget build(BuildContext context) {

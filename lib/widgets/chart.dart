@@ -26,15 +26,32 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get totalSpending {
+    return groupedTransactions.fold(0.0, (sum, item) {
+      return sum + item['amount'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        ...groupedTransactions.map((gData) {
-          return ChartBar(gData['day'], gData['amount'], 0.0);
-        }).toList(),
-      ],
+    return Card(
+      elevation: 6,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          ...groupedTransactions.map((gData) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                  gData['day'],
+                  gData['amount'],
+                  (totalSpending == 0)
+                      ? 0.0
+                      : (gData['amount'] as double) / totalSpending),
+            );
+          }).toList(),
+        ],
+      ),
     );
   }
 }

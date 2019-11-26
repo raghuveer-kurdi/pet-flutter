@@ -8,16 +8,47 @@ class ChartBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      width: 50,
+      padding: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
-          Text(
-            '\$$spending',
-            style: Theme.of(context).textTheme.title,
+          FittedBox(
+            child: Text(
+              '\$${spending.toStringAsFixed(0)}',
+              style: Theme.of(context).textTheme.title,
+            ),
           ),
           SizedBox(
-            height: 20,
+            height: 4,
+          ),
+          Container(
+            height: 60,
+            width: 20,
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(220, 220, 220, 1),
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                FractionallySizedBox(
+                  heightFactor: spendingInPerc,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
+                )
+              ],
+            ),
           ),
           Text(
             label,
